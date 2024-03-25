@@ -107,14 +107,14 @@
 
       "quiz3" : [
         {
-          "question": "quagmire toilet?",
+          "question": "What is the capital of France?",
           "options": {
-            "https://static.wikia.nocookie.net/an-epic-wiki/images/f/f6/Quagmire_toilet.png": "https://static.wikia.nocookie.net/an-epic-wiki/images/f/f6/Quagmire_toilet.png",
-            "https://ew.com/thmb/rJGJzNWtF9df-gA7VJuG9oD9ej4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/000162593HR-446f613fd54b495da37cfedad9dabf88.jpg": "https://ew.com/thmb/rJGJzNWtF9df-gA7VJuG9oD9ej4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/000162593HR-446f613fd54b495da37cfedad9dabf88.jpg",
-            "chttps://hips.hearstapps.com/digitalspyuk.cdnds.net/13/48/ustv-family-guy-brian.jpg": "https://hips.hearstapps.com/digitalspyuk.cdnds.net/13/48/ustv-family-guy-brian.jpg",
-            "https://cdn.mos.cms.futurecdn.net/FCM6Wwvu7ih7dTvRo95Pgm-1200-80.jpg": "https://cdn.mos.cms.futurecdn.net/FCM6Wwvu7ih7dTvRo95Pgm-1200-80.jpg"
+            "a": "https://www.tutorialspoint.com/images/logo.png",
+            "a": "https://www.tutorialspoint.com/static/images/logo-color.png",
+            "a": "https://www.tutorialspoint.com/html/images/html-mini-logo.jpg",
+            "a": "https://static.wikia.nocookie.net/an-epic-wiki/images/f/f6/Quagmire_toilet.png"
           },
-          "correct_answer": "c"
+          "correct_answer": "a"
         },
         {
           "question": "Which planet is known as the Red Planet?",
