@@ -110,9 +110,9 @@
           "question": "What is the capital of France?",
           "options": {
             "a": "https://www.tutorialspoint.com/images/logo.png",
-            "a": "https://www.tutorialspoint.com/static/images/logo-color.png",
-            "a": "https://www.tutorialspoint.com/html/images/html-mini-logo.jpg",
-            "a": "https://static.wikia.nocookie.net/an-epic-wiki/images/f/f6/Quagmire_toilet.png"
+            "b": "https://www.tutorialspoint.com/static/images/logo-color.png",
+            "c": "https://www.tutorialspoint.com/html/images/html-mini-logo.jpg",
+            "d": "https://static.wikia.nocookie.net/an-epic-wiki/images/f/f6/Quagmire_toilet.png"
           },
           "correct_answer": "a"
         },
