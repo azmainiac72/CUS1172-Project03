@@ -55,6 +55,7 @@
     "quiz2" : [
         {
           "question": "What is the capital of Japan?",
+          "questionImage": "https://www.tutorialspoint.com/images/logo.png",
           "options": {
             "a": "Beijing",
             "b": "Tokyo",
@@ -65,6 +66,7 @@
         },
         {
           "question": "Who is the author of 'The Great Gatsby'?",
+          "questionImage": "https://www.tutorialspoint.com/images/logo.png",
           "options": {
             "a": "F. Scott Fitzgerald",
             "b": "Ernest Hemingway",
@@ -75,6 +77,7 @@
         },
         {
           "question": "Which country won the FIFA World Cup in 2018?",
+          "questionImage": "https://www.tutorialspoint.com/images/logo.png",
           "options": {
             "a": "Germany",
             "b": "Brazil",
@@ -85,6 +88,7 @@
         },
         {
           "question": "Who painted the Mona Lisa?",
+          "questionImage": "https://www.tutorialspoint.com/images/logo.png",
           "options": {
             "a": "Leonardo da Vinci",
             "b": "Vincent van Gogh",
@@ -95,6 +99,7 @@
         },
         {
           "question": "What is the chemical symbol for gold?",
+          "questionImage": "https://www.tutorialspoint.com/images/logo.png",
           "options": {
             "a": "Go",
             "b": "Gl",
