@@ -1,0 +1,56 @@
+img {
+    width: 480px;
+}
+
+body {
+    height: 100vh;
+    margin-top: 15px ;
+    background-color: #6B2737;
+    color: #F8F4A6;
+    font-size: 1.5em; 
+}
+
+button {
+    color: #ccc98c;
+    background-color: #002642;
+}
+
+input[type="text"], textarea {
+    color:#F8F4A6;
+    background-color: #002642;
+}
+
+option { 
+    background-color: #002642;
+    color:#F8F4A6;
+}
+
+#gotItBtn {
+    padding: 10px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    margin:10px
+}
+
+#feedback {
+    font-size: 1.5em; 
+    color: #09ff00;
+
+}
+
+#explanation {
+    font-size: 1.5em; 
+    color: #ff7809;
+
+}
+
+#scoreboard {
+    background-color: #0B1D51;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}

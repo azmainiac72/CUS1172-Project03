@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" type="text/css" href="project3.css">
+    <!-- Include Handlebars library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+
+        <!-- Handlebars templates -->
+        <script id="questionTemplate" type="text/x-handlebars-template">
+            <div class="question">
+                <p>{{question}}</p>
+                <div id="questionImageContainer"></div> <!-- Container for the image -->
+                <form id="answerForm">
+                    {{#each options}}
+                        {{#if (isImageKey this)}}
+                            <input type="radio" name="answer" value="{{@key}}" {{#if ../submitted}}disabled{{/if}}>
+                            <img src="{{this}}" alt="{{@key}}"><br>
+                        {{else}}
+                            <input type="radio" name="answer" value="{{@key}}" {{#if ../submitted}}disabled{{/if}}>
+                            <label>{{this}}</label><br>
+                        {{/if}}
+                        <br>
+                    {{/each}}
+                    <button type="submit" {{#if submitted}}disabled{{/if}}>Submit Answer</button>
+                </form>
+                <div id="explanation" style="display: none;">
+                    <p>Incorrect! The correct answer is: {{options.[../correct_answer]}}</p>
+                    <button id="gotItBtn">Got it</button>
+                </div>
+            </div>
+        </script>   
+    
+        <script>
+            Handlebars.registerHelper('isImageKey', function(value) {
+                console.log("Value:", value);
+                return typeof value === 'string' && (value.startsWith('http://') || value.startsWith('https://'));
+            });
+
+        </script>
+
+</head>
+
+<body>
+    <div id="main">
+        <!-- Starting page -->
+        <div id="startPage">
+            <h1>Welcome to the Quiz App!</h1>
+            <form id="startForm">
+                <label for="username">Enter your name:</label>
+                <input type="text" id="username" required>
+                <label for="quizSelect">Select a quiz:</label>
+                <select id="quizSelect">
+                    <option value="quiz1">Multiple Choice</option>
+                    <option value="quiz2">Narrative Question with Text Response</option>
+                    <option value="quiz3">Question with Image Selection</option>
+ 
+                </select>
+                <button type="button" onclick="validateAndStartQuiz()">Start Quiz</button>
+            </form>
+
+        </div>
+        <!-- Quiz view -->
+        <div id="quizView" style="display: none;">
+            <h2>Quiz</h2>
+            <h3 id="studentNameDisplay"></h3>
+            <div id="questionContainer"></div>
+            <div id="questionImageContainer"></div>
+            <div id="feedback"></div>
+            <div id="scoreboard"></div>
+
+        </div>
+        <!-- End of quiz view -->
+        <div id="endOfQuizView" style="display: none;">
+            <h2>Quiz Completed</h2>
+            <p id="endOfQuizMessage"></p>
+            <p>Your score: <span id="score"></span></p>
+            <p id="elapsedTime"></p>
+            <button id="retryBtn" onclick="validateAndStartQuiz()">Retry Quiz</button>
+            <button id="returnBtn" onclick="returnToMain()">Return to Main Page</button>
+        </div>
+        
+    </div>
+
+    <script>
+        let currentQuiz = null;
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let startTime = null;
+
+        function validateAndStartQuiz() {
+            const username = document.getElementById("username").value;
+            if (username.trim() !== "") { // Check if username is not blank
+                const quizSelect = document.getElementById("quizSelect");
+                const selectedQuiz = quizSelect.value;
+                loadQuiz(username, selectedQuiz);
+                document.getElementById("studentNameDisplay").textContent = "Student Name: " + username;
+            } else {
+                alert("Please enter your name to start the quiz.");
+            }
+        }
+
+        function loadQuiz(username, quizName) {
+            fetch("https://my-json-server.typicode.com/azmainiac72/CUS1172-Project03/db")
+                .then(response => response.json())
+                .then(quizzes => {
+                    currentQuiz = quizzes[quizName];
+                    currentQuestionIndex = 0;
+                    score = 0;
+                    startTime = new Date();
+                    showNextQuestion();
+                    showQuizView();
+
+                     // Compile Handlebars template after loading quiz data
+                    compileTemplate();
+                })
+                .catch(error => console.error("Error loading quiz:", error));
+        }
+
+        function compileTemplate() {
+            
+            // Compile Handlebars template
+            const template = Handlebars.compile(document.getElementById("questionTemplate").innerHTML);
+
+            // Use the template to render HTML
+            const html = template({ ...currentQuiz[currentQuestionIndex], submitted: false });
+        }
+
+        function showQuizView() {
+            document.getElementById("startPage").style.display = "none";
+            document.getElementById("endOfQuizView").style.display = "none";
+            document.getElementById("quizView").style.display = "block";
+        }
+
+        function showNextQuestion() {
+            if (currentQuestionIndex < currentQuiz.length) {
+                const question = currentQuiz[currentQuestionIndex];
+                renderQuestion(question);
+            } else {
+                showEndOfQuiz();
+            }
+        }
+
+        function renderQuestion(question) {
+            const template = Handlebars.compile(document.getElementById("questionTemplate").innerHTML);
+            const html = template({ ...question, submitted: false }); // Add submitted flag
+            document.getElementById("questionContainer").innerHTML = html;
+
+             // Render question image
+            renderQuestionImage(question);
+
+            updateScoreboard(); // Update scoreboard with each question
+            
+            // Attach event listener to the form element
+            const answerForm = document.getElementById("answerForm");
+            answerForm.addEventListener("submit", function(event) {
+                event.preventDefault(); // Prevent default form submission behavior
+                const selectedAnswer = answerForm.querySelector('input[name="answer"]:checked').value;
+                evaluateAnswer(event, selectedAnswer, question);
+            });
+        }
+
+        function renderQuestionImage(question) {
+            
+            const imageUrl = question.questionImage;
+            if (imageUrl) {
+                const imageElement = document.createElement('img');
+                imageElement.src = imageUrl;
+                imageElement.alt = "Question Image";
+                document.getElementById("questionImageContainer").appendChild(imageElement);
+            } else {
+                 // If no question image exists, hide the question image container
+                document.getElementById("questionImageContainer").style.display = "none";
+            }
+        }
+
+        function isImageURL(url) {
+            return url.startsWith('http://') || url.startsWith('https://');
+        }
+
+        function evaluateAnswer(event, selectedAnswer, question) {
+            event.preventDefault(); // Prevent default form submission behavior
+
+            console.log("Selected Answer:", selectedAnswer);
+            console.log("Correct Answer:", question.correct_answer);
+
+            const explanation = document.getElementById("explanation");
+            const explanationContent = explanation.querySelector("p");
+
+            if (selectedAnswer.toLowerCase() === question.correct_answer.toLowerCase()) {
+                score++;
+                displayFeedback("Correct!");
+                setTimeout(() => {
+                    hideFeedback(); // Hide correct feedback after delay
+                    currentQuestionIndex++; // Move to the next question
+                    showNextQuestion();
+                }, 1000);
+            } else {
+                explanation.style.display = "block";
+                if (isImageURL(selectedAnswer)) {
+                    explanationContent.innerHTML = "Incorrect! The correct answer is:<br>";
+                    const imageElement = document.createElement('img');
+                    imageElement.src = selectedAnswer;
+                    imageElement.alt = "Selected Answer";
+                    explanationContent.appendChild(imageElement);
+                } else {
+                    explanationContent.textContent = "Incorrect! The correct answer is: " + question.options[question.correct_answer];
+                }
+
+                //const explanation = document.getElementById("explanation");
+                //explanation.style.display = "block";
+                //explanation.querySelector("p").textContent = "Incorrect! The correct answer is: " + question.options[question.correct_answer];
+
+                const gotItBtn = document.getElementById("gotItBtn");
+                gotItBtn.addEventListener("click", function() {
+                    hideFeedback();
+                    currentQuestionIndex++; // Move to the next question
+                    showNextQuestion();
+                });
+                // Lock the answer
+                document.querySelectorAll('#answerForm input').forEach(input => input.disabled = true);
+                document.querySelectorAll('#answerForm button').forEach(button => button.disabled = true);
+            }
+        }
+
+
+        function displayFeedback(message) {
+            const feedbackDiv = document.getElementById("feedback");
+            feedbackDiv.textContent = message;
+            feedbackDiv.style.display = "block";
+        }
+
+        function hideFeedback() {
+            const feedbackDiv = document.getElementById("feedback");
+            feedbackDiv.textContent = "";
+            feedbackDiv.style.display = "none";
+        }
+
+        function showEndOfQuiz() {
+            document.getElementById("quizView").style.display = "none";
+            document.getElementById("endOfQuizView").style.display = "block";
+            const studentName = document.getElementById("username").value;
+            const totalQuestions = currentQuiz.length;
+            const percentageScore = Math.round((score / totalQuestions) * 100);
+            const elapsedTime = calculateElapsedTime();
+            let message = "";
+            if (percentageScore >= 80) {
+                message = `Congratulations ${studentName}! You pass the quiz.`;
+            } else {
+                message = `Sorry ${studentName}, you fail the quiz.`;
+            }
+            document.getElementById("endOfQuizMessage").innerHTML = message;
+            document.getElementById("score").textContent = `${score}/${totalQuestions} (${percentageScore}%)`;
+            document.getElementById("elapsedTime").textContent = `Elapsed Time: ${elapsedTime}`;
+        }
+
+
+        function updateScoreboard() {
+            const elapsedTime = calculateElapsedTime();
+            const scoreboardHTML = `Questions answered: ${currentQuestionIndex} | Elapsed time: ${elapsedTime} | Score: ${score}`;
+            document.getElementById("scoreboard").innerHTML = scoreboardHTML;
+        }
+
+        function calculateElapsedTime() {
+    const endTime = new Date();
+    const elapsedSeconds = Math.round((endTime - startTime) / 1000);
+    const minutes = Math.floor(elapsedSeconds / 60);
+    const seconds = elapsedSeconds % 60;
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+}
+
+function returnToMain() {
+    document.getElementById("endOfQuizView").style.display = "none";
+    document.getElementById("startPage").style.display = "block";
+}
+</script>
+</body>
+</html>
