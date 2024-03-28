@@ -1,52 +1,52 @@
 {
     "quiz1": [
       {
-        "question": "What is the capital of France?",
+        "question": "Which of these is NOT a real Java loop type?",
         "options": {
-          "a": "London",
-          "b": "Berlin",
-          "c": "Paris",
-          "d": "Rome"
+          "a": "While Loop",
+          "b": "During Loop",
+          "c": "For Loop",
+          "d": "Do-While Loop"
         },
-        "correct_answer": "c"
+        "correct_answer": "b"
       },
       {
-        "question": "Which planet is known as the Red Planet?",
+        "question": "What does the acronym 'HTTP' stand for in web development?",
         "options": {
-          "a": "Mars",
-          "b": "Jupiter",
-          "c": "Venus",
-          "d": "Mercury"
-        },
-        "correct_answer": "a"
-      },
-      {
-        "question": "Who wrote 'Romeo and Juliet'?",
-        "options": {
-          "a": "William Shakespeare",
-          "b": "Jane Austen",
-          "c": "Charles Dickens",
-          "d": "Leo Tolstoy"
+          "a": "HyperText Transfer Protocol",
+          "b": "Hamburger Twin Tower Pepsi",
+          "c": "High-Tech Transfer Protocol",
+          "d": "High-Type Transmission Protocol"
         },
         "correct_answer": "a"
       },
       {
-        "question": "What is the chemical symbol for water?",
+        "question": "What does IDE stand for?",
         "options": {
-          "a": "H",
-          "b": "He",
-          "c": "O",
-          "d": "W"
+          "a": "Integrated Development Environment",
+          "b": "Interactive Design Environment",
+          "c": "Interesting Dog Eraser",
+          "d": "Indirect Deepfrying Enigma"
+        },
+        "correct_answer": "a"
+      },
+      {
+        "question": "Which data structure uses the Last In, First Out (LIFO) principle?",
+        "options": {
+          "a": "Queue",
+          "b": "Abacus",
+          "c": "Stack",
+          "d": "Tree"
         },
         "correct_answer": "c"
       },
       {
-        "question": "What is the largest mammal?",
+        "question": "What does CSS stand for in web development?",
         "options": {
-          "a": "Elephant",
-          "b": "Blue whale",
-          "c": "Giraffe",
-          "d": "Hippopotamus"
+          "a": "Computer Swag Station",
+          "b": "Cascading Style Sheets",
+          "c": "Creamy Sauce Spaghetti",
+          "d": "Computer Style Sheets"
         },
         "correct_answer": "b"
       }
@@ -54,57 +54,57 @@
     
     "quiz2" : [
         {
-          "question": "What is the capital of Japan?",
-          "questionImage": "https://www.tutorialspoint.com/images/logo.png",
+          "question": "Given the Java code snippet below, what will the output be?",
+          "questionImage": "https://raw.githubusercontent.com/azmainiac72/CUS1172-Project03/main/question2_1.png",
           "options": {
-            "a": "Beijing",
-            "b": "Tokyo",
-            "c": "Seoul",
-            "d": "Bangkok"
+            "a": "ERROR",
+            "b": "10",
+            "c": "13",
+            "d": "i"
           },
           "correct_answer": "b"
         },
         {
-          "question": "Who is the author of 'The Great Gatsby'?",
-          "questionImage": "https://www.tutorialspoint.com/images/logo.png",
+          "question": "Given the image below, what type of tree is this?",
+          "questionImage": "https://raw.githubusercontent.com/azmainiac72/CUS1172-Project03/main/question2_2.png",
           "options": {
-            "a": "F. Scott Fitzgerald",
-            "b": "Ernest Hemingway",
-            "c": "William Faulkner",
-            "d": "John Steinbeck"
+            "a": "Binary",
+            "b": "Linear",
+            "c": "Natural",
+            "d": "Numerical"
           },
           "correct_answer": "a"
         },
         {
-          "question": "Which country won the FIFA World Cup in 2018?",
-          "questionImage": "https://www.tutorialspoint.com/images/logo.png",
+          "question": "What programming language has this logo?",
+          "questionImage": "https://raw.githubusercontent.com/azmainiac72/CUS1172-Project03/main/question2_3.png",
           "options": {
-            "a": "Germany",
-            "b": "Brazil",
-            "c": "France",
-            "d": "Argentina"
+            "a": "Cobra",
+            "b": "Rattlesnake",
+            "c": "Python",
+            "d": "Ouroboros"
           },
           "correct_answer": "c"
         },
         {
-          "question": "Who painted the Mona Lisa?",
-          "questionImage": "https://www.tutorialspoint.com/images/logo.png",
+          "question": "Given the Java code snippet below, what will the output be?",
+          "questionImage": "https://raw.githubusercontent.com/azmainiac72/CUS1172-Project03/main/question2_4.png",
           "options": {
-            "a": "Leonardo da Vinci",
-            "b": "Vincent van Gogh",
-            "c": "Pablo Picasso",
-            "d": "Michelangelo"
+            "a": "Volvo",
+            "b": "BMW",
+            "c": "Ford",
+            "d": "Mazda"
           },
-          "correct_answer": "a"
+          "correct_answer": "c"
         },
         {
-          "question": "What is the chemical symbol for gold?",
-          "questionImage": "https://www.tutorialspoint.com/images/logo.png",
+          "question": "Given the Java code snippet below, what will the output be?",
+          "questionImage": "https://raw.githubusercontent.com/azmainiac72/CUS1172-Project03/main/question2_5.png",
           "options": {
-            "a": "Go",
-            "b": "Gl",
-            "c": "Au",
-            "d": "Ag"
+            "a": "Hello, World!",
+            "b": "hello, world!",
+            "c": "HELLO, WORLD!",
+            "d": "hELLO, wORLD!"
           },
           "correct_answer": "c"
         }
@@ -112,24 +112,24 @@
 
       "quiz3" : [
         {
-          "question": "What is the capital of France?",
+          "question": "Which of the following images is the logo for Java?",
           "options": {
-            "a": "https://www.tutorialspoint.com/images/logo.png",
-            "b": "https://www.tutorialspoint.com/static/images/logo-color.png",
-            "c": "https://www.tutorialspoint.com/html/images/html-mini-logo.jpg",
-            "d": "https://static.wikia.nocookie.net/an-epic-wiki/images/f/f6/Quagmire_toilet.png"
+            "a": "https://banner2.cleanpng.com/20180517/zve/kisspng-java-programmer-computer-programming-logo-5afe2f1dcf9897.0745314915266076458503.jpg",
+            "b": "https://img.freepik.com/premium-vector/cup-coffee-with-abstract-backgroung_928213-16.jpg",
+            "c": "https://cdn2.vectorstock.com/i/1000x1000/18/46/isolated-abstract-coffee-mug-icon-vector-20791846.jpg",
+            "d": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Starbucks_Corporation_Logo_2011.svg/1200px-Starbucks_Corporation_Logo_2011.svg.png"
           },
           "correct_answer": "a"
         },
         {
-          "question": "Which planet is known as the Red Planet?",
+          "question": "Which of the following images is the logo for Python?",
           "options": {
-            "a": "https://static.wikia.nocookie.net/an-epic-wiki/images/f/f6/Quagmire_toilet.png",
-            "b": "https://static.wikia.nocookie.net/an-epic-wiki/images/f/f6/Quagmire_toilet.png",
-            "c": "https://static.wikia.nocookie.net/an-epic-wiki/images/f/f6/Quagmire_toilet.png",
-            "d": "https://static.wikia.nocookie.net/an-epic-wiki/images/f/f6/Quagmire_toilet.png"
+            "a": "https://scalebranding.com/wp-content/uploads/2022/02/Snake-1-1024x1024.jpg",
+            "b": "https://1000logos.net/wp-content/uploads/2019/09/Razer-Logo-1998.png",
+            "c": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1869px-Python-logo-notext.svg.png",
+            "d": "https://img.freepik.com/premium-vector/snake-logo-design-template_10250-5820.jpg"
           },
-          "correct_answer": "a"
+          "correct_answer": "c"
         },
         {
           "question": "Who wrote 'Romeo and Juliet'?",
